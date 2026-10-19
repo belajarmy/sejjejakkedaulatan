@@ -101,7 +101,7 @@ body{background:#071416}
 
 <input class="hidden" type="file" id="rankImportFile" accept=".json,application/json"><div class="overlay" id="dialogOverlay" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog"><div class="dialogTop"><div><div class="eyebrow" id="dialogEyebrow">ARKIB LAPANGAN</div><h2 id="dialogTitle">Tajuk</h2></div><button class="close" id="closeDialog" aria-label="Tutup">×</button></div><div id="dialogBody"></div><div class="dialogButtons" id="dialogButtons"></div></div></div>
 
-<div class="startScreen" id="startScreen"><div class="startCard"><div class="startCopy"><div class="kicker">Permainan simulasi · Bab 7</div><h1>JEJAK<br><em>KEDAULATAN</em></h1><p>Masuki dunia isometrik sejarah tempatan. Teroka perkampungan, pos pentadbiran dan kubu; kumpulkan bukti; kemudian uji kebijaksanaan anda sebagai penjelajah sejarah.</p><ul><li>10 misi tokoh utama Bab 7</li><li>30 petunjuk sejarah: 3 bagi setiap tokoh</li><li>10 cabaran tokoh dan ranking kelas</li><li>Markah pencapaian serta ranking kelas</li></ul><div class="startFields"><label>Nama pemain<input id="playerNameInput" maxlength="32" autocomplete="given-name" placeholder="Masukkan nama"></label><label>Kelas<input id="classNameInput" maxlength="32" autocomplete="off" placeholder="Contoh: 3 Amanah"></label></div><p class="formHint">Markah akan dikongsi antara peranti melalui pangkalan data dalam talian selepas Netlify dan Supabase disediakan. Jika data luar talian, markah tempatan kekal disimpan.</p><div class="startActions"><button class="btn gold" id="startBtn">MULA PENJELAJAHAN ↗</button><button class="btn gold" id="resumeBtn">SAMBUNG PERMAINAN ↗</button><button class="btn ghost" id="startHelpBtn">Lihat kawalan</button></div></div><div class="startArt"><div class="emblem">⚔</div><div class="artLabel">Teroka · Fahami · Hargai</div></div></div></div>
+<div class="startScreen" id="startScreen"><div class="startCard"><div class="startCopy"><div class="kicker">Permainan simulasi · Bab 7</div><h1>JEJAK<br><em>KEDAULATAN</em></h1><p>Masuki dunia isometrik sejarah tempatan. Teroka perkampungan, pos pentadbiran dan kubu; kumpulkan bukti; kemudian uji kebijaksanaan anda sebagai penjelajah sejarah.</p><ul><li>10 misi tokoh utama Bab 7</li><li>30 petunjuk sejarah: 3 bagi setiap tokoh</li><li>10 cabaran tokoh dan ranking kelas</li><li>Markah pencapaian serta ranking kelas</li></ul><div class="startFields"><label>Nama pemain<input id="playerNameInput" maxlength="32" autocomplete="given-name" placeholder="Masukkan nama"></label><label>Kelas<input id="classNameInput" maxlength="32" autocomplete="off" placeholder="Contoh: 3 Amanah"></label></div><p class="formHint">Markah akan dikongsi antara peranti melalui pangkalan data dalam talian apabila sambungan Supabase dikonfigurasi. Jika data luar talian, markah tempatan kekal disimpan.</p><div class="startActions"><button class="btn gold" id="startBtn">MULA PENJELAJAHAN ↗</button><button class="btn gold" id="resumeBtn">SAMBUNG PERMAINAN ↗</button><button class="btn ghost" id="startHelpBtn">Lihat kawalan</button></div></div><div class="startArt"><div class="emblem">⚔</div><div class="artLabel">Teroka · Fahami · Hargai</div></div></div></div>
 
 <div class="finalScreen" id="finalScreen" role="region" aria-label="Sijil pencapaian akhir"><div class="certificate"><div class="cert-kicker">Sijil Pencapaian · Sejarah Tingkatan 3 Bab 7 (7.1 Matlamat Dan Bentuk Penentangan Masyarakat Tempatan)</div><div class="cert-title">JEJAK KEDAULATAN</div><div class="cert-rule"></div><div class="cert-award">Dengan ini diperakui bahawa</div><div class="cert-name" id="finalPlayerName">Nama Pemain</div><div class="cert-class" id="finalClass">Kelas</div><div class="cert-award">telah berjaya menamatkan penjelajahan <strong>Bab 7: Penentangan Masyarakat Tempatan</strong> dengan menyelesaikan semua cabaran tokoh.</div><div class="cert-stats"><div class="cert-stat"><span>JUMLAH MARKAH</span><strong id="finalScore">0</strong></div><div class="cert-stat"><span>RANKING KELAS</span><strong id="finalRank">#1</strong></div><div class="cert-stat"><span>MISI TOKOH</span><strong id="finalMissions">10/10</strong></div></div><div class="cert-foot">TEROKA · FAHAMI · HARGAI KEDAULATAN</div><div class="finalActions"><button class="btn gold" id="finalRestartBtn">↻ MULA SEMULA</button><button class="btn ghost" id="finalRankingBtn">♛ RANKING KELAS</button></div></div></div>
 
@@ -118,7 +118,10 @@ const keys = new Set();
 const collected = new Set();
 const leaderCompleted = new Set();
 const BOARD_KEY = 'jejakKedaulatanLeaderboardV1';
-const API_ENDPOINT = '/api/leaderboard';
+const SUPABASE_URL = 'https://oqfkjashdhxmtzgslaoo.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_dB6WALDRHOM7eiueziwqMQ_56tfHPJ6'; // Gunakan sb_publishable_ sahaja, BUKAN sb_secret_
+const API_ENDPOINT = SUPABASE_URL + '/rest/v1/game_scores';
+const supabaseHeaders = () => ({'apikey': SUPABASE_PUBLISHABLE_KEY, 'Authorization': 'Bearer ' + SUPABASE_PUBLISHABLE_KEY, 'Content-Type':'application/json'});
 let remoteBoard=[], remoteConnected=false, remoteStatus='Belum disemak', remoteWriteQueue=Promise.resolve(), rankRefreshInterval=null, rankRefreshCallback=null;
 let moveTarget=null;
 let score=0,completed=new Set(),quizState=null,activeMission=0;
@@ -338,18 +341,24 @@ function getBoard(){
 function boardKey(r){return `${String(r.className||'').trim().toLowerCase()}|${String(r.name||'').trim().toLowerCase()}`}
 function progressPercent(r){return Math.round(((Number(r.missions)||0)+(Number(r.tokoh)||0)+(Number(r.clues)||0))/(4+leaders.length+30)*100)}
 function markRemoteOffline(err){remoteConnected=false;remoteStatus='Belum disambungkan — markah disimpan pada peranti ini';if(err)console.warn('Papan ranking dalam talian belum tersedia:',err)}
-function mapRemoteRecord(r){return normalizeRecord(r)}
+function mapRemoteRecord(r){
+ return normalizeRecord({name:r.player_name,className:r.room_code,score:r.score,tokoh:r.level,updatedAt:r.created_at});
+}
 async function refreshRemoteBoard(){
- const res=await fetch(API_ENDPOINT,{method:'GET',headers:{'Accept':'application/json'},cache:'no-store'});
- if(!res.ok)throw new Error('Server ranking memberi kod '+res.status);
- const data=await res.json();remoteBoard=(Array.isArray(data.records)?data.records:[]).map(mapRemoteRecord);remoteConnected=true;remoteStatus='Disambungkan · ranking kelas dikongsi dalam talian';return remoteBoard
+ if(SUPABASE_PUBLISHABLE_KEY==='MASUKKAN_PUBLISHABLE_KEY_DI_SINI')throw new Error('Masukkan publishable key Supabase dahulu');
+ const res=await fetch(API_ENDPOINT+'?select=player_name,room_code,score,level,created_at&order=score.desc&limit=1000',{method:'GET',headers:supabaseHeaders(),cache:'no-store'});
+ if(!res.ok)throw new Error('Supabase ranking memberi kod '+res.status+': '+(await res.text()).slice(0,180));
+ const data=await res.json();remoteBoard=(Array.isArray(data)?data:[]).map(mapRemoteRecord);remoteConnected=true;remoteStatus='Disambungkan · ranking kelas dikongsi dalam talian';return remoteBoard;
 }
 function syncRemoteRecord(r){
  const record=normalizeRecord(r);if(!record.name||!record.className)return;
  remoteWriteQueue=remoteWriteQueue.then(async()=>{
-   const res=await fetch(API_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(record)});
-   if(!res.ok)throw new Error('Gagal menghantar markah ('+res.status+')');
-   const data=await res.json();if(data.record){const row=mapRemoteRecord(data.record);const k=boardKey(row),i=remoteBoard.findIndex(x=>boardKey(x)===k);if(i<0)remoteBoard.push(row);else remoteBoard[i]=row}
+   if(SUPABASE_PUBLISHABLE_KEY==='MASUKKAN_PUBLISHABLE_KEY_DI_SINI')throw new Error('Masukkan publishable key Supabase dahulu');
+   // Skema jadual sedia ada: room_code, player_name, score, level, created_at.
+   const payload={room_code:record.className,player_name:record.name,score:record.score,level:record.tokoh};
+   const res=await fetch(API_ENDPOINT,{method:'POST',headers:{...supabaseHeaders(),'Prefer':'return=representation'},body:JSON.stringify(payload)});
+   if(!res.ok)throw new Error('Gagal menghantar markah ('+res.status+'): '+(await res.text()).slice(0,180));
+   const data=await res.json();if(Array.isArray(data)&&data[0]){const row=mapRemoteRecord(data[0]);const k=boardKey(row),i=remoteBoard.findIndex(x=>boardKey(x)===k);if(i<0)remoteBoard.push(row);else if(row.score>=remoteBoard[i].score)remoteBoard[i]=row;}
    remoteConnected=true;remoteStatus='Disambungkan · markah berjaya disimpan';if(rankRefreshCallback)rankRefreshCallback();
  }).catch(err=>markRemoteOffline(err));
 }
