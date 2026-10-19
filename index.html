@@ -350,98 +350,84 @@ async function refreshRemoteBoard(){
  if(!res.ok)throw new Error('Supabase ranking memberi kod '+res.status+': '+(await res.text()).slice(0,180));
  const data=await res.json();remoteBoard=(Array.isArray(data)?data:[]).map(mapRemoteRecord);remoteConnected=true;remoteStatus='Disambungkan · ranking kelas dikongsi dalam talian';return remoteBoard;
 }
+// Status penghantaran disimpan berasingan daripada rekod tempatan.
+let lastRemoteSavedKey = '';
+let lastRemotePendingKey = '';
 function syncRemoteRecord(r){
  const record=normalizeRecord(r);
  if(!record.name||!record.className)return Promise.resolve();
+ const signature=boardKey(record)+'|'+record.score+'|'+record.tokoh;
+ if(signature===lastRemoteSavedKey||signature===lastRemotePendingKey)return remoteWriteQueue;
+ lastRemotePendingKey=signature;
  remoteWriteQueue=remoteWriteQueue.catch(()=>{}).then(async()=>{
    if(SUPABASE_PUBLISHABLE_KEY==='MASUKKAN_PUBLISHABLE_KEY_DI_SINI')throw new Error('Masukkan publishable key Supabase dahulu');
-   // Semak rekod pemain dan kelas dahulu supaya tidak menambah baris berulang.
    const query='?select=id,player_name,room_code,score,level,created_at'
      +'&room_code=eq.'+encodeURIComponent(record.className)
      +'&player_name=eq.'+encodeURIComponent(record.name)
      +'&order=score.desc&limit=1000';
    const check=await fetch(API_ENDPOINT+query,{method:'GET',headers:supabaseHeaders(),cache:'no-store'});
-   if(!check.ok)throw new Error('Gagal menyemak markah ('+check.status+'): '+(await check.text()).slice(0,180));
+   if(!check.ok)throw new Error('Semakan Supabase gagal ('+check.status+'): '+(await check.text()).slice(0,180));
    const existing=await check.json();
    const best=Array.isArray(existing)&&existing.length?existing[0]:null;
    const bestScore=best?Number(best.score)||0:0;
    const bestLevel=best?Number(best.level)||0:0;
-   // Jangan turunkan markah atau tahap pencapaian sedia ada.
    if(best&&bestScore>=record.score&&bestLevel>=record.tokoh){
+     lastRemoteSavedKey=signature;
      remoteConnected=true;
      remoteStatus='Disambungkan · markah terbaik dikekalkan';
      return;
    }
-   const payload={
-     room_code:record.className,
-     player_name:record.name,
-     score:Math.max(bestScore,record.score),
-     level:Math.max(bestLevel,record.tokoh)
-   };
-   const url=best
-     ? API_ENDPOINT+'?id=eq.'+encodeURIComponent(best.id)
-     : API_ENDPOINT;
+   const payload={room_code:record.className,player_name:record.name,
+     score:Math.max(bestScore,record.score),level:Math.max(bestLevel,record.tokoh)};
+   const url=best?API_ENDPOINT+'?id=eq.'+encodeURIComponent(best.id):API_ENDPOINT;
    const method=best?'PATCH':'POST';
-   const res=await fetch(url,{
-     method,
-     headers:{...supabaseHeaders(),'Prefer':'return=representation'},
-     body:JSON.stringify(payload)
-   });
-   if(!res.ok)throw new Error('Gagal menyimpan markah ('+res.status+'): '+(await res.text()).slice(0,180));
+   const res=await fetch(url,{method,headers:{...supabaseHeaders(),'Prefer':'return=representation'},body:JSON.stringify(payload)});
+   if(!res.ok)throw new Error('Simpan markah gagal ('+res.status+'): '+(await res.text()).slice(0,180));
    const data=await res.json();
-   if(Array.isArray(data)&&data[0]){
-     const row=mapRemoteRecord(data[0]);
-     const k=boardKey(row),i=remoteBoard.findIndex(x=>boardKey(x)===k);
-     if(i<0)remoteBoard.push(row);
-     else if(row.score>=remoteBoard[i].score)remoteBoard[i]=row;
-   }
+   // PATCH boleh pulang HTTP 200 tetapi tiada baris berubah jika RLS UPDATE belum dibenarkan.
+   if(!Array.isArray(data)||!data.length)throw new Error('Supabase tidak mengemas kini rekod. Semak polisi UPDATE pada jadual game_scores.');
+   const row=mapRemoteRecord(data[0]);
+   const k=boardKey(row),i=remoteBoard.findIndex(x=>boardKey(x)===k);
+   if(i<0)remoteBoard.push(row);
+   else if(row.score>=remoteBoard[i].score)remoteBoard[i]=row;
+   lastRemoteSavedKey=signature;
    remoteConnected=true;
    remoteStatus='Disambungkan · markah berjaya disimpan';
    if(rankRefreshCallback)rankRefreshCallback();
- }).catch(err=>{markRemoteOffline(err);});
+ }).catch(err=>{
+   markRemoteOffline(err);
+   remoteStatus='Gagal kemas kini markah: '+err.message;
+ }).finally(()=>{if(lastRemotePendingKey===signature)lastRemotePendingKey='';});
  return remoteWriteQueue;
 }
 function saveRunRecord(){
  if(!started||!playerName.trim()||!className.trim()||
     (!score&&!completed.size&&!leaderCompleted.size&&!collected.size))return;
  try{
-   const r={
-     name:playerName.trim(),
-     className:className.trim(),
-     score:Number(score)||0,
-     missions:completed.size,
-     tokoh:leaderCompleted.size,
-     clues:collected.size,
-     progress:progressPercent({
-       missions:completed.size,tokoh:leaderCompleted.size,clues:collected.size
-     }),
-     updatedAt:new Date().toISOString()
-   };
-   // Banding dengan rekod tempatan, bukan getBoard() yang bercampur rekod online.
+   const r={name:playerName.trim(),className:className.trim(),score:Number(score)||0,
+     missions:completed.size,tokoh:leaderCompleted.size,clues:collected.size,
+     progress:progressPercent({missions:completed.size,tokoh:leaderCompleted.size,clues:collected.size}),
+     updatedAt:new Date().toISOString()};
    let board=[];
-   try{
-     const stored=JSON.parse(localStorage.getItem(BOARD_KEY)||'[]');
-     if(Array.isArray(stored))board=stored.map(normalizeRecord);
-   }catch(e){}
+   try{const stored=JSON.parse(localStorage.getItem(BOARD_KEY)||'[]');
+     if(Array.isArray(stored))board=stored.map(normalizeRecord);}catch(e){}
    const k=boardKey(r),i=board.findIndex(x=>boardKey(x)===k);
    const previous=i>=0?board[i]:null;
-   const changed=!previous||
-     r.score>previous.score||
-     r.missions>previous.missions||
-     r.tokoh>previous.tokoh||
-     r.clues>previous.clues;
-   if(!changed)return;
-   // Kekalkan rekod terbaik apabila pemain memulakan permainan baharu.
+   const changed=!previous||r.score>previous.score||r.missions>previous.missions||
+     r.tokoh>previous.tokoh||r.clues>previous.clues;
    if(previous){
      r.score=Math.max(previous.score,r.score);
      r.missions=Math.max(previous.missions,r.missions);
      r.tokoh=Math.max(previous.tokoh,r.tokoh);
      r.clues=Math.max(previous.clues,r.clues);
      r.progress=Math.max(previous.progress,r.progress);
-     board[i]=r;
-   }else board.push(r);
-   localStorage.setItem(BOARD_KEY,JSON.stringify(board));
-   syncRemoteRecord(r).catch(e=>console.warn('Tidak dapat menyimpan ranking dalam talian:',e));
+   }
+   if(changed){
+     if(i>=0)board[i]=r;else board.push(r);
+     localStorage.setItem(BOARD_KEY,JSON.stringify(board));
+   }
+   // Cuba hantar walaupun rekod tempatan tidak berubah: penting selepas kegagalan internet/RLS.
+   syncRemoteRecord(r);
  }catch(e){console.warn('Tidak dapat menyimpan ranking:',e);}
 }
 function openRanking(){let selected=className.trim()||'';showDialog('PAPAN PENCAPAIAN','Ranking kelas',`<p>Ranking disusun mengikut markah tertinggi. Kemajuan merangkumi 4 zon utama, 10 cabaran tokoh dan 30 petunjuk. Ranking dikemas kini secara automatik apabila data dalam talian tersedia.</p><div id="rankConnection" class="feedback">Sedang memeriksa pangkalan data…</div><div id="rankContent"></div>`,[{text:'Segerak semula',class:'gold',click:()=>refreshRemoteBoard().then(()=>draw(selected)).catch(e=>{markRemoteOffline(e);draw(selected)})},{text:'Eksport rekod (.json)',class:'ghost',click:exportRanking},{text:'Import rekod pemain',class:'ghost',click:()=>document.getElementById('rankImportFile').click()},{text:'Tutup',class:'ghost',click:closeDialog}]);
