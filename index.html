@@ -13,7 +13,7 @@
 button{font:inherit;cursor:pointer;border:0;transition:transform .15s ease,filter .15s ease}button:hover{filter:brightness(1.08);transform:translateY(-1px)}button:focus-visible{outline:3px solid #f5ce77;outline-offset:2px}
 #app{height:100%;display:flex;flex-direction:column;background:radial-gradient(ellipse at 50% -15%,#34584b 0,#122529 47%,#0b1518 100%)}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line);background:rgba(8,17,20,.78);z-index:5;min-height:68px}
-.brand{display:flex;align-items:center;gap:12px;min-width:0}.brandmark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#f4d184,#b8783f);color:#24352e;font-size:23px;box-shadow:inset 0 1px #fff8}.brand h1{font-size:16px;letter-spacing:.08em;margin:0;font-weight:900}.brand p{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b6c1b7;margin:4px 0 0}.stats{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.stat{padding:8px 11px;border:1px solid var(--line);background:#142324;border-radius:10px;min-width:90px}.stat .label{font-size:9px;letter-spacing:.11em;color:#9eafa6;text-transform:uppercase}.stat .value{font-size:17px;font-weight:850;margin-top:2px;color:#f4d38a}
+.brand{display:flex;align-items:center;gap:12px;min-width:0}.brandmark{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#f4d184,#b8783f);color:#24352e;font-size:23px;box-shadow:inset 0 1px #fff8}.brand h1{font-size:16px;letter-spacing:.08em;margin:0;font-weight:900}.brand p{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#b6c1b7;margin:4px 0 0}.stats{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}.stat{padding:8px 11px;border:1px solid var(--line);background:#142324;border-radius:10px;min-width:90px}.stat .label{font-size:9px;letter-spacing:.11em;color:#9eafa6;text-transform:uppercase}.stat .value{font-size:17px;font-weight:850;margin-top:2px;color:#f4d38a;white-space:nowrap}#score{font-size:clamp(12px,1.5vw,17px)}
 .content{flex:1;min-height:0;display:grid;grid-template-rows:auto minmax(0,1fr);grid-template-columns:minmax(0,1fr);gap:12px;padding:12px}.sceneWrap{position:relative;min-width:0;min-height:0;overflow:hidden;border:1px solid rgba(235,211,143,.22);border-radius:18px;background:#1d362f;box-shadow:0 18px 48px #0005}.sceneWrap canvas{display:block;width:100%;height:100%;touch-action:none;cursor:crosshair}.sceneHeader{position:absolute;left:16px;top:14px;display:flex;flex-direction:column;gap:5px;pointer-events:none;text-shadow:0 2px 8px #000}.sceneHeader .eyebrow{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#f2d48e;font-weight:900}.sceneHeader h2{font-size:clamp(17px,2vw,24px);margin:0;letter-spacing:-.03em}.sceneHeader p{font-size:12px;color:#d7dfd3;margin:0;max-width:360px}.sceneBottom{position:absolute;left:14px;right:14px;bottom:12px;display:flex;justify-content:space-between;align-items:flex-end;gap:10px;pointer-events:none}.hint{font-size:11px;color:#e7e8d9;padding:9px 12px;border-radius:10px;background:#071312ce;border:1px solid #ffffff1a;max-width:400px;backdrop-filter:blur(8px)}.nearby{font-size:11px;color:#f4d38a;padding:9px 12px;border-radius:10px;background:#071312dc;border:1px solid #ebce8c55;font-weight:800;display:none}
 .panel{min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.85fr) minmax(0,.32fr);gap:10px}.panel .card{padding:10px 12px}.panel .card:first-child{padding:9px 11px}.panel .card:first-child .objective{margin:3px 0;font-size:14px}.panel .card:first-child .subtext{display:none}.panel .card:first-child .progressRow{margin:7px 0 5px}.panel .card:last-of-type{padding:7px 6px}.panel .card:last-of-type .cardTitle{margin:0 0 6px}.actions{display:grid;grid-template-columns:1fr;gap:4px}.actions .btn{padding:5px 4px;font-size:10px;border-radius:8px}.card{border:1px solid var(--line);border-radius:15px;background:var(--panel);padding:14px;box-shadow:0 10px 24px #0002}.cardTitle{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:#f1d18a}.tinyLabel{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:#9aada4;font-weight:900}.objective{font-size:15px;line-height:1.35;font-weight:850;margin:6px 0}.subtext{font-size:12px;line-height:1.55;color:#bfcbc2;margin:0}.progressRow{display:flex;justify-content:space-between;font-size:11px;color:#c5d0c8;margin:10px 0 6px}.bar{height:6px;border-radius:99px;background:#243a34;overflow:hidden}.bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,#a7c96b,#f1ca71);border-radius:99px;transition:width .3s}.missionList{display:flex;flex-direction:column;gap:7px}.mission{width:100%;display:flex;align-items:center;gap:10px;padding:9px;text-align:left;background:#1a2a2b;color:var(--ink);border:1px solid #ffffff10;border-radius:10px}.mission.active{border-color:#e8c87188;background:#293a30}.mission.done{opacity:.75}.mission .number{width:30px;height:30px;flex-shrink:0;display:grid;place-items:center;border-radius:9px;background:#35483c;color:#e8cc80;font-size:12px;font-weight:900}.mission.done .number{background:#466c47;color:#e7f4d8}.mission strong{display:block;font-size:11px}.mission small{display:block;font-size:10px;color:#aebeb3;margin-top:3px;line-height:1.3}.pill{font-size:9px;padding:4px 6px;border:1px solid #e8cf8c3b;color:#e8cf8c;border-radius:6px;white-space:nowrap;margin-left:auto}.actions{display:grid;grid-template-columns:1fr 1fr;gap:7px}.btn{border-radius:10px;padding:10px 9px;font-size:11px;font-weight:850}.btn.gold{background:linear-gradient(135deg,#f2d384,#d89d52);color:#192821}.btn.ghost{background:#213331;color:#f0e9d8;border:1px solid #ffffff16}.btn.rust{background:#7d4031;color:#fff1df}.footnote{font-size:10px;line-height:1.45;color:#869b91;padding:0 4px}.mobileControls{display:none;position:absolute;right:12px;bottom:55px;gap:5px;grid-template-columns:repeat(3,39px);grid-template-rows:repeat(2,39px);z-index:3}.mobileControls button{border-radius:10px;background:#0b1a1bd9;color:#f5d58c;border:1px solid #f3d28b55;font-size:16px;touch-action:manipulation}.mobileControls .up{grid-column:2}.mobileControls .left{grid-column:1;grid-row:2}.mobileControls .down{grid-column:2;grid-row:2}.mobileControls .right{grid-column:3;grid-row:2}
 #interactBtn{position:absolute;right:14px;bottom:145px;display:none;padding:12px 15px;border-radius:12px;background:#f2cc79;color:#14251f;font-size:11px;font-weight:950;box-shadow:0 6px 18px #0005;z-index:3}
@@ -61,6 +61,17 @@ body{background:#071416}
 .finalScreen{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:18px;overflow:auto;background:radial-gradient(ellipse at 50% 0%,#385d47,#0b1719 78%)}
 .finalScreen.show{display:flex}.certificate{position:relative;width:min(850px,100%);padding:clamp(20px,4vw,42px);color:#24372d;background:#f6efd9;border:8px double #b78b43;box-shadow:0 25px 80px #0009;text-align:center;overflow:hidden}.certificate:before,.certificate:after{content:'✦';position:absolute;color:#b78b43;font-size:38px;opacity:.65}.certificate:before{top:12px;left:18px}.certificate:after{right:18px;bottom:12px}.cert-kicker{font-size:11px;letter-spacing:.24em;font-weight:900;color:#87642e;text-transform:uppercase}.cert-title{font-family:Georgia,serif;font-size:clamp(30px,5vw,50px);line-height:1.05;margin:12px 0;color:#234735}.cert-rule{width:110px;height:3px;background:#b78b43;margin:15px auto}.cert-name{font-family:Georgia,serif;font-size:clamp(25px,4vw,38px);font-weight:700;color:#8b5e22;overflow-wrap:anywhere;margin:12px 0}.cert-class{font-size:15px;color:#586c5e}.cert-award{font-size:14px;line-height:1.7;margin:15px auto;max-width:600px;color:#34483b}.cert-stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:20px 0}.cert-stat{min-width:150px;padding:14px 20px;border:1px solid #c7a86a;background:#fff9e9}.cert-stat span{display:block;font-size:10px;letter-spacing:.12em;font-weight:900;color:#7c6847}.cert-stat strong{display:block;font-size:clamp(25px,4vw,34px);color:#234735;margin-top:4px}.cert-foot{font-size:11px;letter-spacing:.08em;color:#6f7b6f;margin-top:15px}.finalActions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}.finalActions .btn{min-width:160px;padding:12px 18px}@media(max-width:520px){.certificate{border-width:5px;padding:24px 14px}.cert-stat{min-width:120px;flex:1}.finalActions .btn{width:100%}}
 
+/* Pastikan butang Sijil boleh dicapai juga pada telefon berskrin kecil. */
+.startScreen{overflow-y:auto;overscroll-behavior:contain}
+.startCard{flex-shrink:0}
+.finalScreen{align-items:flex-start}
+.certificate{margin:auto}
+@media(max-width:760px){
+  .startScreen{align-items:flex-start;padding:12px}
+  .startCard{margin:auto 0}
+  .startActions .btn{flex:1 1 160px}
+  .startCopy{padding:20px}
+}
 </style>
 </head>
 <body>
@@ -68,7 +79,7 @@ body{background:#071416}
   <header class="topbar">
     <div class="brand"><div class="brandmark">✥</div><div><h1>JEJAK KEDAULATAN</h1><p>Sejarah Tingkatan 3 · Bab 7 Penentangan Masyarakat Tempatan</p></div></div>
     <div class="stats">
-      <div class="stat"><div class="label">Mata</div><div class="value" id="score">000</div></div>
+      <div class="stat"><div class="label">Markah</div><div class="value" id="score">0 / 3270</div></div>
       <div class="stat"><div class="label">Petunjuk</div><div class="value" id="clueCount">0/30</div></div>
       <div class="stat"><div class="label">Misi tokoh</div><div class="value" id="missionCount">0/10</div></div><div class="stat"><div class="label">Tokoh</div><div class="value" id="leaderCount">0/10</div></div>
     </div>
@@ -101,9 +112,9 @@ body{background:#071416}
 
 <input class="hidden" type="file" id="rankImportFile" accept=".json,application/json"><div class="overlay" id="dialogOverlay" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog"><div class="dialogTop"><div><div class="eyebrow" id="dialogEyebrow">ARKIB LAPANGAN</div><h2 id="dialogTitle">Tajuk</h2></div><button class="close" id="closeDialog" aria-label="Tutup">×</button></div><div id="dialogBody"></div><div class="dialogButtons" id="dialogButtons"></div></div></div>
 
-<div class="startScreen" id="startScreen"><div class="startCard"><div class="startCopy"><div class="kicker">Permainan simulasi · Bab 7</div><h1>JEJAK<br><em>KEDAULATAN</em></h1><p>Masuki dunia isometrik sejarah tempatan. Teroka perkampungan, pos pentadbiran dan kubu; kumpulkan bukti; kemudian uji kebijaksanaan anda sebagai penjelajah sejarah.</p><ul><li>10 misi tokoh utama Bab 7</li><li>30 petunjuk sejarah: 3 bagi setiap tokoh</li><li>10 cabaran tokoh dan ranking kelas</li><li>Markah pencapaian serta ranking kelas</li></ul><div class="startFields"><label>Nama pemain<input id="playerNameInput" maxlength="32" autocomplete="given-name" placeholder="Masukkan nama"></label><label>Kelas<input id="classNameInput" maxlength="32" autocomplete="off" placeholder="Contoh: 3 Amanah"></label></div><p class="formHint">Markah akan dikongsi antara peranti melalui pangkalan data dalam talian apabila sambungan Supabase dikonfigurasi. Jika data luar talian, markah tempatan kekal disimpan.</p><div class="startActions"><button class="btn gold" id="startBtn">MULA PENJELAJAHAN ↗</button><button class="btn gold" id="resumeBtn">SAMBUNG PERMAINAN ↗</button><button class="btn ghost" id="startRankingBtn">🏆 RANKING KELAS</button><button class="btn ghost" id="startHelpBtn">Lihat kawalan</button></div></div><div class="startArt"><div class="emblem">⚔</div><div class="artLabel">Teroka · Fahami · Hargai</div></div></div></div>
+<div class="startScreen" id="startScreen"><div class="startCard"><div class="startCopy"><div class="kicker">Permainan simulasi · Bab 7</div><h1>JEJAK<br><em>KEDAULATAN</em></h1><p>Masuki dunia isometrik sejarah tempatan. Teroka perkampungan, pos pentadbiran dan kubu; kumpulkan bukti; kemudian uji kebijaksanaan anda sebagai penjelajah sejarah.</p><ul><li>10 misi tokoh utama Bab 7</li><li>30 petunjuk sejarah: 3 bagi setiap tokoh</li><li>10 cabaran tokoh dan ranking kelas</li><li>Markah pencapaian serta ranking kelas</li></ul><div class="startFields"><label>Nama pemain<input id="playerNameInput" maxlength="32" autocomplete="given-name" placeholder="Masukkan nama"></label><label>KOD KELAS<input id="classNameInput" maxlength="32" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CONTOH: 3KAA" aria-describedby="codeHint" style="text-transform:uppercase"></label></div><p class="formHint" id="codeHint"><strong>Contoh kod kelas: 3KAA (HURUF BESAR). Kod kelas wajib mempunyai huruf dan nombor, tanpa sebarang ruang.</strong> Huruf kecil yang ditaip akan dipaparkan sebagai huruf besar; urutan huruf dan nombor mesti tepat. Untuk melihat sijil, masukkan nama yang sama seperti ketika bermain (termasuk huruf besar/kecil) serta kod kelas yang sama.</p><p class="formHint">Markah akan dikongsi antara peranti melalui pangkalan data dalam talian apabila sambungan Supabase dikonfigurasi. Jika data luar talian, markah tempatan kekal disimpan.</p><div class="startActions"><button class="btn gold" id="startBtn">MULA PENJELAJAHAN ↗</button><button class="btn gold" id="resumeBtn">SAMBUNG PERMAINAN ↗</button><button class="btn ghost" id="startRankingBtn">🏆 RANKING KELAS</button><button class="btn gold" id="startCertificateBtn">📜 LIHAT SIJIL</button><button class="btn ghost" id="startHelpBtn">Lihat kawalan</button></div></div><div class="startArt"><div class="emblem">⚔</div><div class="artLabel">Teroka · Fahami · Hargai</div></div></div></div>
 
-<div class="finalScreen" id="finalScreen" role="region" aria-label="Sijil pencapaian akhir"><div class="certificate"><div class="cert-kicker">Sijil Pencapaian · Sejarah Tingkatan 3 Bab 7 (7.1 Matlamat Dan Bentuk Penentangan Masyarakat Tempatan)</div><div class="cert-title">JEJAK KEDAULATAN</div><div class="cert-rule"></div><div class="cert-award">Dengan ini diperakui bahawa</div><div class="cert-name" id="finalPlayerName">Nama Pemain</div><div class="cert-class" id="finalClass">Kelas</div><div class="cert-award">telah berjaya menamatkan penjelajahan <strong>Bab 7: Penentangan Masyarakat Tempatan</strong> dengan menyelesaikan semua cabaran tokoh.</div><div class="cert-stats"><div class="cert-stat"><span>JUMLAH MARKAH</span><strong id="finalScore">0</strong></div><div class="cert-stat"><span>RANKING KELAS</span><strong id="finalRank">#1</strong></div><div class="cert-stat"><span>MISI TOKOH</span><strong id="finalMissions">10/10</strong></div></div><div class="cert-foot">TEROKA · FAHAMI · HARGAI KEDAULATAN</div><div class="finalActions"><button class="btn gold" id="finalRestartBtn">↻ MULA SEMULA</button><button class="btn ghost" id="finalRankingBtn">♛ RANKING KELAS</button></div></div></div>
+<div class="finalScreen" id="finalScreen" role="region" aria-label="Sijil pencapaian akhir"><div class="certificate"><div class="cert-kicker">Sijil Pencapaian · Sejarah Tingkatan 3 Bab 7 (7.1 Matlamat Dan Bentuk Penentangan Masyarakat Tempatan)</div><div class="cert-title">JEJAK KEDAULATAN</div><div class="cert-rule"></div><div class="cert-award">Dengan ini diperakui bahawa</div><div class="cert-name" id="finalPlayerName">Nama Pemain</div><div class="cert-class" id="finalClass">Kelas</div><div class="cert-award">telah berjaya menamatkan penjelajahan <strong>Bab 7: Penentangan Masyarakat Tempatan</strong> dengan menyelesaikan semua cabaran tokoh.</div><div class="cert-stats"><div class="cert-stat"><span>JUMLAH MARKAH</span><strong id="finalScore">0 / 3270</strong></div><div class="cert-stat"><span>RANKING KELAS</span><strong id="finalRank">#1</strong></div><div class="cert-stat"><span>MISI TOKOH</span><strong id="finalMissions">10/10</strong></div></div><div class="cert-foot">TEROKA · FAHAMI · HARGAI KEDAULATAN</div><div class="finalActions"><button class="btn gold" id="finalRestartBtn">↻ MULA SEMULA</button><button class="btn gold hidden" id="finalBackBtn">← KEMBALI KE PAPARAN MULA</button><button class="btn ghost" id="finalRankingBtn">♛ RANKING KELAS</button></div></div></div>
 
 <script>
 (() => {
@@ -195,6 +206,30 @@ const addedClues=[
 addedClues.forEach(([leaderId,category,body,x,z])=>{const l=leaders.find(v=>v.id===leaderId);leaderClues.push({id:leaderId+'-'+category.toLowerCase().replaceAll(' ','-'),leaderId,leaderName:l.name,region:l.region,x,z,title:category,category,body})});
 // Pastikan tepat 3 petunjuk untuk setiap tokoh; data asal empat tokoh dikekalkan.
 const cluesByLeader=id=>leaderClues.filter(c=>c.leaderId===id);
+// Jumlah markah maksimum mengikut PERATURAN ASAL (dikekalkan supaya ranking lama serasi):
+// 30 petunjuk × 25; setiap soalan tokoh boleh mendapat 50 markah betul +
+// 10 × 2 pilihan salah yang disingkirkan, dan markah cabaran digandakan
+// apabila misi tokoh disiapkan dalam kod asal.
+const MAX_SCORE = leaderClues.length * 25 +
+  leaders.reduce((total,l)=>total+leaderQuestionSet(l).length*(50+2*10)*2,0);
+const normalizeClassCode = value => String(value ?? '').toUpperCase();
+const validClassCode = value => /^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]+$/.test(String(value ?? ''));
+document.getElementById('classNameInput').addEventListener('input', e => { const el=e.target; const a=el.selectionStart, b=el.selectionEnd; el.value=el.value.toUpperCase(); if(a!==null && b!==null) el.setSelectionRange(a,b); });
+function readStartIdentity(){
+  const nameEl=document.getElementById('playerNameInput');
+  const codeEl=document.getElementById('classNameInput');
+  const name=nameEl.value.trim();
+  const rawCode=codeEl.value;
+  if(!name){toast('Masukkan nama pemain dahulu.');nameEl.focus();return null}
+  if(!rawCode){toast('Masukkan kod kelas dahulu.');codeEl.focus();return null}
+  if(/\s/.test(rawCode)){
+    toast('Kod kelas tidak boleh ada ruang (space), termasuk di awal atau akhir.');codeEl.focus();return null;
+  }
+  if(!validClassCode(rawCode)){
+    toast('Kod kelas mesti mengandungi huruf DAN nombor sahaja, dengan susunan yang tepat.');codeEl.focus();return null;
+  }
+  return {name:name.slice(0,32),classCode:normalizeClassCode(rawCode.slice(0,32))};
+}
 
 function resize(){const r=wrap.getBoundingClientRect();dpr=Math.min(window.devicePixelRatio||1,2);width=Math.max(320,r.width);height=Math.max(280,r.height);canvas.width=Math.floor(width*dpr);canvas.height=Math.floor(height*dpr);canvas.style.width=width+'px';canvas.style.height=height+'px';ctx.setTransform(dpr,0,0,dpr,0,0)}
 window.addEventListener('resize',resize);resize();
@@ -269,25 +304,69 @@ function nearestEntity(){let best=null,dist=Infinity;leaderClues.forEach(c=>{if(
 function zoneAtPlayer(){let best=0,dist=999;missions.forEach(m=>{const d=Math.hypot(player.x-m.hub.x,player.z-m.hub.z);if(d<dist){best=m.id;dist=d}});return dist<7?best:null}
 function updateSceneHUD(){const near=zoneAtPlayer();const id=near===null?activeMission:near;if(id!==activeMission){activeMission=id;renderMissionList()}const m=missions[id];document.getElementById('zoneTitle').textContent=near===null?'Jelajah dunia sejarah':m.title;document.getElementById('zoneSubtitle').textContent=near===null?'Cari petunjuk emas untuk setiap tokoh.':'Jurnal petunjuk · '+m.region;document.getElementById('activeChapter').textContent=m.chapter;const nextLeader=leaders.find(l=>!leaderCompleted.has(l.id));let actionText,actionDesc;if(!nextLeader){actionText='Tindakan: Semua misi tokoh selesai!';actionDesc='Anda telah melengkapkan semua cabaran dan petunjuk. Semak keputusan akhir.';}else{const own=cluesByLeader(nextLeader.id),remaining=own.filter(c=>!collected.has(c.id)).length;if(remaining>0){actionText='Tindakan: Kumpulkan '+remaining+' petunjuk untuk '+nextLeader.name+'.';actionDesc='Pastikan Jurnal Petunjuk mempunyai Latar belakang, Sebab penentangan dan Peristiwa penentangan bagi tokoh ini.';}else{actionText='Tindakan: Bergerak ke tokoh '+nextLeader.name+'.';actionDesc='Anda telah menyimpan 3 petunjuk. Dekati '+nextLeader.name+' dan klik tokoh itu untuk menjawab cabaran ('+leaderQuestionSet(nextLeader).length+' soalan).';}}document.getElementById('objectiveText').textContent=actionText;document.getElementById('objectiveDesc').textContent=actionDesc;document.getElementById('nearbyLabel').style.display='none';document.getElementById('interactBtn').style.display='none';}
 
-function updateHUD(){document.getElementById('score').textContent=String(score).padStart(3,'0');document.getElementById('clueCount').textContent=collected.size+'/30';document.getElementById('missionCount').textContent=leaderCompleted.size+'/'+leaders.length;document.getElementById('leaderCount').textContent=leaderCompleted.size+'/'+leaders.length;document.getElementById('clueProgressText').textContent=collected.size+' daripada 30';document.getElementById('clueBar').style.width=(collected.size/30*100)+'%';document.getElementById('leaderProgressText').textContent=leaderCompleted.size+' daripada '+leaders.length;document.getElementById('leaderBar').style.width=(leaderCompleted.size/leaders.length*100)+'%';const near=zoneAtPlayer();if(near!==null)activeMission=near;renderMissionList();updateSceneHUD();saveRunRecord();}
+function updateHUD(){document.getElementById('score').textContent=score+' / '+MAX_SCORE;document.getElementById('clueCount').textContent=collected.size+'/30';document.getElementById('missionCount').textContent=leaderCompleted.size+'/'+leaders.length;document.getElementById('leaderCount').textContent=leaderCompleted.size+'/'+leaders.length;document.getElementById('clueProgressText').textContent=collected.size+' daripada 30';document.getElementById('clueBar').style.width=(collected.size/30*100)+'%';document.getElementById('leaderProgressText').textContent=leaderCompleted.size+' daripada '+leaders.length;document.getElementById('leaderBar').style.width=(leaderCompleted.size/leaders.length*100)+'%';const near=zoneAtPlayer();if(near!==null)activeMission=near;renderMissionList();updateSceneHUD();saveRunRecord();}
 let autoTriggered=null;
 function autoInteract(){/* Interaksi tidak lagi terbuka secara automatik apabila pemain menghampiri objek. Gunakan E atau butang INTERAKSI. */}
-function showFinalResults(){
-  // Simpan rekod akhir terlebih dahulu supaya kedudukan sijil dan ranking sama.
-  saveRunRecord();
-  const rows=getBoard().filter(r=>String(r.className||'').trim().toLowerCase()===className.trim().toLowerCase()).sort((a,b)=>(Number(b.score)||0)-(Number(a.score)||0)||(Number(b.progress)||0)-(Number(a.progress)||0)||String(a.name).localeCompare(String(b.name),'ms'));
-  let rank=rows.findIndex(r=>String(r.name||'').trim().toLowerCase()===playerName.trim().toLowerCase()&&String(r.className||'').trim().toLowerCase()===className.trim().toLowerCase())+1;
+function getClassRanking(classCode){
+  return getBoard().filter(r=>normalizeClassCode(String(r.className||'').trim())===normalizeClassCode(classCode))
+    .sort((a,b)=>(Number(b.score)||0)-(Number(a.score)||0)||(Number(b.progress)||0)-(Number(a.progress)||0)||String(a.name).localeCompare(String(b.name),'ms'));
+}
+function displayCertificate(result,{fromStart=false}={}){
+  const rows=getClassRanking(result.className);
+  // Nama mesti benar-benar sepadan, termasuk huruf besar/kecil, seperti dimasukkan semasa bermain.
+  let rank=rows.findIndex(r=>r.name===result.name)+1;
   if(rank<1)rank=rows.length+1;
-  document.getElementById('finalPlayerName').textContent=playerName;
-  document.getElementById('finalClass').textContent='Kelas '+className;
-  document.getElementById('finalScore').textContent=String(score);
+  document.getElementById('finalPlayerName').textContent=result.name;
+  document.getElementById('finalClass').textContent='Kelas '+result.className;
+  document.getElementById('finalScore').textContent=String(result.score)+' / '+MAX_SCORE;
   document.getElementById('finalRank').textContent='#'+rank;
-  document.getElementById('finalMissions').textContent=leaderCompleted.size+'/'+leaders.length;
+  document.getElementById('finalMissions').textContent=(result.tokoh||0)+'/'+leaders.length;
+  document.getElementById('finalRestartBtn').classList.toggle('hidden',fromStart);
+  document.getElementById('finalBackBtn').classList.toggle('hidden',!fromStart);
   document.getElementById('finalScreen').classList.add('show');
   document.getElementById('startScreen').classList.add('hidden');
   document.getElementById('dialogOverlay').classList.remove('show');
-  dialogOpen=false;started=false;saveSession();
+  dialogOpen=false;
 }
+function showFinalResults(){
+  // Tunjuk sijil selepas semua tokoh selesai. Jangan ubah nama semasa bermain.
+  saveRunRecord();
+  displayCertificate({name:playerName,className,score,tokoh:leaderCompleted.size});
+  started=false;
+  saveSession();
+}
+async function viewCertificateFromStart(){
+  const entered=readStartIdentity();
+  if(!entered)return;
+  const btn=document.getElementById('startCertificateBtn');
+  btn.disabled=true;btn.textContent='⏳ MENYEMAK SIJIL...';
+  try{
+    // Sijil hanya dipaparkan bagi rekod pemain yang menyelesaikan 10 tokoh.
+    // Muat semula data Supabase supaya boleh dilihat daripada peranti berbeza.
+    await refreshRemoteBoard();
+    const record=getClassRanking(entered.classCode).find(r=>r.name===entered.name);
+    if(!record){
+      toast('Tiada rekod untuk nama dan kod kelas itu. Gunakan nama yang SAMA seperti semasa bermain.');
+      return;
+    }
+    if((Number(record.tokoh)||0)<leaders.length){
+      toast('Sijil belum tersedia. Pemain perlu menamatkan kesemua 10 misi tokoh dahulu.');
+      return;
+    }
+    displayCertificate(record,{fromStart:true});
+  }catch(err){
+    console.warn('Semakan sijil gagal:',err);
+    toast('Tidak dapat menyemak sijil dalam talian. Semak internet dan cuba lagi.');
+  }finally{
+    btn.disabled=false;btn.textContent='📜 LIHAT SIJIL';
+  }
+}
+function returnToStartFromCertificate(){
+  document.getElementById('finalScreen').classList.remove('show');
+  document.getElementById('startScreen').classList.remove('hidden');
+}
+document.getElementById('startCertificateBtn').addEventListener('click',viewCertificateFromStart);
+document.getElementById('finalBackBtn').addEventListener('click',returnToStartFromCertificate);
 function restartFromCertificate(){
   document.getElementById('finalScreen').classList.remove('show');
   score=0;completed.clear();collected.clear();leaderCompleted.clear();quizState=null;leaderQuizState=null;
@@ -296,7 +375,7 @@ function restartFromCertificate(){
   updateHUD();saveSession();toast('Permainan baharu bermula. Semoga berjaya!');
 }
 document.getElementById('finalRestartBtn').addEventListener('click',restartFromCertificate);
-document.getElementById('finalRankingBtn').addEventListener('click',()=>{document.getElementById('finalScreen').classList.remove('show');openRanking()});
+document.getElementById('finalRankingBtn').addEventListener('click',()=>{document.getElementById('finalScreen').classList.remove('show');document.getElementById('startScreen').classList.remove('hidden');openRanking()});
 
 function renderMissionList(){const box=document.getElementById('missionList');if(!box)return;box.innerHTML='';const pending=leaders.map((l,i)=>({l,i})).filter(({l})=>!leaderCompleted.has(l.id));if(!pending.length){box.innerHTML='<div class="factBox">Semua misi tokoh selesai. Tiada misi tertunggak dalam Buku Lapangan.</div>';return}pending.forEach(({l,i},n)=>{const b=document.createElement('button');b.className='mission'+(moveTarget&&moveTarget.leaderIndex===i?' active':'');b.innerHTML=`<span class="number">${n+1}</span><span class="missionCopy"><strong>${esc(l.name)}</strong><small>${esc(l.region)} · ${esc(l.role)}</small></span><span class="pill">TEROKA ↗</span>`;b.addEventListener('click',()=>{closeDialogIfNeeded();moveTowardLeader(i)});box.appendChild(b)})}
 function closeDialogIfNeeded(){if(dialogOpen)closeDialog()}
@@ -448,7 +527,7 @@ function saveSession(){const data={score,completed:[...completed],collected:[...
 function resumeSession(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(!d||!d.playerName||!d.className){toast('Tiada permainan tersimpan untuk disambung.');return}score=d.score||0;completed.clear();(d.completed||[]).forEach(x=>completed.add(x));collected.clear();(d.collected||[]).forEach(x=>collected.add(x));leaderCompleted.clear();(d.leaderCompleted||[]).forEach(x=>leaderCompleted.add(x));Object.assign(player,d.player||{x:3.7,z:4.2});activeMission=d.activeMission||0;playerName=d.playerName;className=d.className;started=true;document.getElementById('startScreen').classList.add('hidden');document.getElementById('playerNameInput').value=playerName;document.getElementById('classNameInput').value=className;updateHUD();toast('Permainan disambung dari tempat terakhir.')}catch(e){toast('Data simpanan tidak dapat dibaca.')}}
 function pauseGame(){saveRunRecord();saveSession();started=false;closeDialog();document.getElementById('startScreen').classList.remove('hidden');document.getElementById('resumeBtn').textContent='SAMBUNG PERMAINAN ↗';toast('Permainan ditangguhkan dan kemajuan telah disimpan.')}
 document.getElementById('journalBtn').addEventListener('click',openJournal);document.getElementById('rankingBtn').addEventListener('click',openRanking);document.getElementById('switchBtn').addEventListener('click',switchPlayer);document.getElementById('helpBtn').addEventListener('click',openHelp);document.getElementById('mapBtn').addEventListener('click',openMap);document.getElementById('pauseBtn').addEventListener('click',pauseGame);document.getElementById('resumeBtn').addEventListener('click',resumeSession);document.getElementById('resetBtn').addEventListener('click',()=>showDialog('MULA SEMULA','Mulakan semula permainan?',`<p>Semua petunjuk, markah dan misi selesai akan dipadamkan daripada sesi ini. Rekod terbaik dalam ranking tidak akan dipadam.</p>`,[{text:'Batal',class:'ghost',click:closeDialog},{text:'Ya, mula semula',class:'rust',click:resetGame}]));document.getElementById('interactBtn').addEventListener('click',interact);
-function startGame(){const name=document.getElementById('playerNameInput').value.trim();const cls=document.getElementById('classNameInput').value.trim();if(!name){toast('Masukkan nama pemain dahulu.');document.getElementById('playerNameInput').focus();return}if(!cls){toast('Masukkan nama kelas dahulu.');document.getElementById('classNameInput').focus();return}playerName=name.slice(0,32);className=cls.slice(0,32);started=true;document.getElementById('startScreen').classList.add('hidden');updateHUD();refreshRemoteBoard().then(()=>{remoteStatus='Disambungkan · ranking kelas dikongsi dalam talian'}).catch(e=>markRemoteOffline(e));toast('Selamat menjelajah, '+playerName+'! Klik tokoh atau lokasi untuk bergerak.')}
+function startGame(){const entered=readStartIdentity();if(!entered)return;playerName=entered.name;className=entered.classCode;document.getElementById('classNameInput').value=className;started=true;document.getElementById('startScreen').classList.add('hidden');updateHUD();refreshRemoteBoard().then(()=>{remoteStatus='Disambungkan · ranking kelas dikongsi dalam talian'}).catch(e=>markRemoteOffline(e));toast('Selamat menjelajah, '+playerName+'! Klik tokoh atau lokasi untuk bergerak.')}
 document.getElementById('startBtn').addEventListener('click',startGame);document.getElementById('startRankingBtn').addEventListener('click',openRanking);document.getElementById('startHelpBtn').addEventListener('click',()=>{showDialog('PANDUAN RINGKAS','Kawalan penjelajah',`<div class="factBox">Komputer: <strong>W/A/S/D</strong> atau <strong>anak panah</strong> untuk bergerak. Bergerak ke lokasi dahulu. Klik petunjuk atau tokoh hanya apabila sudah dekat.<br><br>Telefon: gunakan pad arah untuk bergerak, kemudian sentuh petunjuk atau tokoh pada skrin.<br><br>Bergerak ke lokasi petunjuk atau tokoh dahulu. Apabila sudah dekat, klik petunjuk untuk membacanya atau klik tokoh untuk menjawab 3 soalan. Kumpulkan 30 petunjuk (3 bagi setiap tokoh) dan lengkapkan cabaran 10 tokoh. Masukkan nama serta kelas sebelum mula supaya rekod pencapaian dimasukkan ke ranking.</div>`,[{text:'Kembali',class:'gold',click:closeDialog}])});
 window.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(['arrowup','arrowdown','arrowleft','arrowright',' '].includes(k))e.preventDefault();if(k==='escape'&&dialogOpen){closeDialog();return}if(k==='e'){return}keys.add(k)});window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));window.addEventListener('blur',()=>keys.clear());
 // Mobile movement: press-and-hold controls
